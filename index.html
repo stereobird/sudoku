@@ -10,112 +10,126 @@
 
 <h1>Sudoku</h1>
 <div id="container">
+	<div class="board">
 	<table width="100%" height="100%" id="board" cellpadding="0" cellspacing="0">
 		<tr>
-			<td class="row1 col1 sq1"><input type="number" min="1" max="9" value="1" id="x1" /></td>
-			<td class="row1 col2 sq1"><input type="number" min="1" max="9" value="2" id="x2" /></td>
-			<td class="row1 col3 sq1"><input type="number" min="1" max="9" value="3" id="x3" /></td>
-			<td class="row1 col4 sq2"><input type="number" min="1" max="9" value="4" id="x10" /></td>
-			<td class="row1 col5 sq2"><input type="number" min="1" max="9" value="5" id="x11" /></td>
-			<td class="row1 col6 sq2"><input type="number" min="1" max="9" value="6" id="x12" /></td>
-			<td class="row1 col7 sq3"><input type="number" min="1" max="9" value="7" id="x19" /></td>
-			<td class="row1 col8 sq3"><input type="number" min="1" max="9" value="8" id="x20" /></td>
-			<td class="row1 col9 sq3"><input type="number" min="1" max="9" value="9" id="x21" /></td>
+			<td class="row1 col1 reg1"><input type="text" maxlength="1" value="1" id="x1" /></td>
+			<td class="row1 col2 reg1"><input type="text" maxlength="1" value="2" id="x2" /></td>
+			<td class="row1 col3 reg1"><input type="text" maxlength="1" value="3" id="x3" /></td>
+			<td class="row1 col4 reg2"><input type="text" maxlength="1" value="4" id="x10" /></td>
+			<td class="row1 col5 reg2"><input type="text" maxlength="1" value="5" id="x11" /></td>
+			<td class="row1 col6 reg2"><input type="text" maxlength="1" value="6" id="x12" /></td>
+			<td class="row1 col7 reg3"><input type="text" maxlength="1" value="7" id="x19" /></td>
+			<td class="row1 col8 reg3"><input type="text" maxlength="1" value="8" id="x20" /></td>
+			<td class="row1 col9 reg3"><input type="text" maxlength="1" value="9" id="x21" /></td>
 		</tr>
 		<tr>
-			<td class="row2 col1 sq1"><input type="number" min="1" max="9" value="4" id="x4" /></td>
-			<td class="row2 col2 sq1"><input type="number" min="1" max="9" value="5" id="x5" /></td>
-			<td class="row2 col3 sq1"><input type="number" min="1" max="9" value="6" id="x6" /></td>
-			<td class="row2 col4 sq2"><input type="number" min="1" max="9" value="7" id="x13" /></td>
-			<td class="row2 col5 sq2"><input type="number" min="1" max="9" value="8" id="x14" /></td>
-			<td class="row2 col6 sq2"><input type="number" min="1" max="9" value="9" id="x15" /></td>
-			<td class="row2 col7 sq3"><input type="number" min="1" max="9" value="1" id="x22" /></td>
-			<td class="row2 col8 sq3"><input type="number" min="1" max="9" value="2" id="x23" /></td>
-			<td class="row2 col9 sq3"><input type="number" min="1" max="9" value="3" id="x24" /></td>
+			<td class="row2 col1 reg1"><input type="text" maxlength="1" value="4" id="x4" /></td>
+			<td class="row2 col2 reg1"><input type="text" maxlength="1" value="5" id="x5" /></td>
+			<td class="row2 col3 reg1"><input type="text" maxlength="1" value="6" id="x6" /></td>
+			<td class="row2 col4 reg2"><input type="text" maxlength="1" value="7" id="x13" /></td>
+			<td class="row2 col5 reg2"><input type="text" maxlength="1" value="8" id="x14" /></td>
+			<td class="row2 col6 reg2"><input type="text" maxlength="1" value="9" id="x15" /></td>
+			<td class="row2 col7 reg3"><input type="text" maxlength="1" value="1" id="x22" /></td>
+			<td class="row2 col8 reg3"><input type="text" maxlength="1" value="2" id="x23" /></td>
+			<td class="row2 col9 reg3"><input type="text" maxlength="1" value="3" id="x24" /></td>
 		</tr>
 		<tr>
-			<td class="row3 col1 sq1"><input type="number" min="1" max="9" value="7" id="x7" /></td>
-			<td class="row3 col2 sq1"><input type="number" min="1" max="9" value="8" id="x8" /></td>
-			<td class="row3 col3 sq1"><input type="number" min="1" max="9" value="9" id="x9" /></td>
-			<td class="row3 col4 sq2"><input type="number" min="1" max="9" value="1" id="x16" /></td>
-			<td class="row3 col5 sq2"><input type="number" min="1" max="9" value="2" id="x17" /></td>
-			<td class="row3 col6 sq2"><input type="number" min="1" max="9" value="3" id="x18" /></td>
-			<td class="row3 col7 sq3"><input type="number" min="1" max="9" value="4" id="x25" /></td>
-			<td class="row3 col8 sq3"><input type="number" min="1" max="9" value="5" id="x26" /></td>
-			<td class="row3 col9 sq3"><input type="number" min="1" max="9" value="6" id="x27" /></td>
-		</tr>
-<!-- ////////// -->
-		<tr>
-			<td class="row4 col1 sq4"><input type="number" min="1" max="9" value="2" id="x28" /></td>
-			<td class="row4 col2 sq4"><input type="number" min="1" max="9" value="3" id="x29" /></td>
-			<td class="row4 col3 sq4"><input type="number" min="1" max="9" value="4" id="x30" /></td>
-			<td class="row4 col4 sq5"><input type="number" min="1" max="9" value="5" id="x37" /></td>
-			<td class="row4 col5 sq5"><input type="number" min="1" max="9" value="6" id="x38" /></td>
-			<td class="row4 col6 sq5"><input type="number" min="1" max="9" value="7" id="x39" /></td>
-			<td class="row4 col7 sq6"><input type="number" min="1" max="9" value="8" id="x46" /></td>
-			<td class="row4 col8 sq6"><input type="number" min="1" max="9" value="9" id="x47" /></td>
-			<td class="row4 col9 sq6"><input type="number" min="1" max="9" value="1" id="x48" /></td>
-		</tr>
-		<tr>
-			<td class="row5 col1 sq4"><input type="number" min="1" max="9" value="5" id="x31" /></td>
-			<td class="row5 col2 sq4"><input type="number" min="1" max="9" value="6" id="x32" /></td>
-			<td class="row5 col3 sq4"><input type="number" min="1" max="9" value="7" id="x33" /></td>
-			<td class="row5 col4 sq5"><input type="number" min="1" max="9" value="8" id="x40" /></td>
-			<td class="row5 col5 sq5"><input type="number" min="1" max="9" value="9" id="x41" /></td>
-			<td class="row5 col6 sq5"><input type="number" min="1" max="9" value="1" id="x42" /></td>
-			<td class="row5 col7 sq6"><input type="number" min="1" max="9" value="2" id="x49" /></td>
-			<td class="row5 col8 sq6"><input type="number" min="1" max="9" value="3" id="x50" /></td>
-			<td class="row5 col9 sq6"><input type="number" min="1" max="9" value="4" id="x51" /></td>
-		</tr>
-		<tr>
-			<td class="row6 col1 sq4"><input type="number" min="1" max="9" value="8" id="x34" /></td>
-			<td class="row6 col2 sq4"><input type="number" min="1" max="9" value="9" id="x35" /></td>
-			<td class="row6 col3 sq4"><input type="number" min="1" max="9" value="1" id="x36" /></td>
-			<td class="row6 col4 sq5"><input type="number" min="1" max="9" value="2" id="x43" /></td>
-			<td class="row6 col5 sq5"><input type="number" min="1" max="9" value="3" id="x44" /></td>
-			<td class="row6 col6 sq5"><input type="number" min="1" max="9" value="4" id="x45" /></td>
-			<td class="row6 col7 sq6"><input type="number" min="1" max="9" value="5" id="x52" /></td>
-			<td class="row6 col8 sq6"><input type="number" min="1" max="9" value="6" id="x53" /></td>
-			<td class="row6 col9 sq6"><input type="number" min="1" max="9" value="7" id="x54" /></td>
+			<td class="row3 col1 reg1"><input type="text" maxlength="1" value="7" id="x7" /></td>
+			<td class="row3 col2 reg1"><input type="text" maxlength="1" value="8" id="x8" /></td>
+			<td class="row3 col3 reg1"><input type="text" maxlength="1" value="9" id="x9" /></td>
+			<td class="row3 col4 reg2"><input type="text" maxlength="1" value="1" id="x16" /></td>
+			<td class="row3 col5 reg2"><input type="text" maxlength="1" value="2" id="x17" /></td>
+			<td class="row3 col6 reg2"><input type="text" maxlength="1" value="3" id="x18" /></td>
+			<td class="row3 col7 reg3"><input type="text" maxlength="1" value="4" id="x25" /></td>
+			<td class="row3 col8 reg3"><input type="text" maxlength="1" value="5" id="x26" /></td>
+			<td class="row3 col9 reg3"><input type="text" maxlength="1" value="6" id="x27" /></td>
 		</tr>
 <!-- ////////// -->
 		<tr>
-			<td class="row7 col1 sq7"><input type="number" min="1" max="9" value="3" id="x55" /></td>
-			<td class="row7 col2 sq7"><input type="number" min="1" max="9" value="4" id="x56" /></td>
-			<td class="row7 col3 sq7"><input type="number" min="1" max="9" value="5" id="x57" /></td>
-			<td class="row7 col4 sq8"><input type="number" min="1" max="9" value="6" id="x64" /></td>
-			<td class="row7 col5 sq8"><input type="number" min="1" max="9" value="7" id="x65" /></td>
-			<td class="row7 col6 sq8"><input type="number" min="1" max="9" value="8" id="x66" /></td>
-			<td class="row7 col7 sq9"><input type="number" min="1" max="9" value="9" id="x73" /></td>
-			<td class="row7 col8 sq9"><input type="number" min="1" max="9" value="1" id="x74" /></td>
-			<td class="row7 col9 sq9"><input type="number" min="1" max="9" value="2" id="x75" /></td>
+			<td class="row4 col1 reg4"><input type="text" maxlength="1" value="2" id="x28" /></td>
+			<td class="row4 col2 reg4"><input type="text" maxlength="1" value="3" id="x29" /></td>
+			<td class="row4 col3 reg4"><input type="text" maxlength="1" value="4" id="x30" /></td>
+			<td class="row4 col4 reg5"><input type="text" maxlength="1" value="5" id="x37" /></td>
+			<td class="row4 col5 reg5"><input type="text" maxlength="1" value="6" id="x38" /></td>
+			<td class="row4 col6 reg5"><input type="text" maxlength="1" value="7" id="x39" /></td>
+			<td class="row4 col7 reg6"><input type="text" maxlength="1" value="8" id="x46" /></td>
+			<td class="row4 col8 reg6"><input type="text" maxlength="1" value="9" id="x47" /></td>
+			<td class="row4 col9 reg6"><input type="text" maxlength="1" value="1" id="x48" /></td>
 		</tr>
 		<tr>
-			<td class="row8 col1 sq7"><input type="number" min="1" max="9" value="6" id="x58" /></td>
-			<td class="row8 col2 sq7"><input type="number" min="1" max="9" value="7" id="x59" /></td>
-			<td class="row8 col3 sq7"><input type="number" min="1" max="9" value="8" id="x60" /></td>
-			<td class="row8 col4 sq8"><input type="number" min="1" max="9" value="9" id="x67" /></td>
-			<td class="row8 col5 sq8"><input type="number" min="1" max="9" value="1" id="x68" /></td>
-			<td class="row8 col6 sq8"><input type="number" min="1" max="9" value="2" id="x69" /></td>
-			<td class="row8 col7 sq9"><input type="number" min="1" max="9" value="3" id="x76" /></td>
-			<td class="row8 col8 sq9"><input type="number" min="1" max="9" value="4" id="x77" /></td>
-			<td class="row8 col9 sq9"><input type="number" min="1" max="9" value="5" id="x78" /></td>
+			<td class="row5 col1 reg4"><input type="text" maxlength="1" value="5" id="x31" /></td>
+			<td class="row5 col2 reg4"><input type="text" maxlength="1" value="6" id="x32" /></td>
+			<td class="row5 col3 reg4"><input type="text" maxlength="1" value="7" id="x33" /></td>
+			<td class="row5 col4 reg5"><input type="text" maxlength="1" value="8" id="x40" /></td>
+			<td class="row5 col5 reg5"><input type="text" maxlength="1" value="9" id="x41" /></td>
+			<td class="row5 col6 reg5"><input type="text" maxlength="1" value="1" id="x42" /></td>
+			<td class="row5 col7 reg6"><input type="text" maxlength="1" value="2" id="x49" /></td>
+			<td class="row5 col8 reg6"><input type="text" maxlength="1" value="3" id="x50" /></td>
+			<td class="row5 col9 reg6"><input type="text" maxlength="1" value="4" id="x51" /></td>
 		</tr>
 		<tr>
-			<td class="row9 col1 sq7"><input type="number" min="1" max="9" value="9" id="x61" /></td>
-			<td class="row9 col2 sq7"><input type="number" min="1" max="9" value="1" id="x62" /></td>
-			<td class="row9 col3 sq7"><input type="number" min="1" max="9" value="2" id="x63" /></td>
-			<td class="row9 col4 sq8"><input type="number" min="1" max="9" value="3" id="x70" /></td>
-			<td class="row9 col5 sq8"><input type="number" min="1" max="9" value="4" id="x71" /></td>
-			<td class="row9 col6 sq8"><input type="number" min="1" max="9" value="5" id="x72" /></td>
-			<td class="row9 col7 sq9"><input type="number" min="1" max="9" value="6" id="x79" /></td>
-			<td class="row9 col8 sq9"><input type="number" min="1" max="9" value="7" id="x80" /></td>
-			<td class="row9 col9 sq9"><input type="number" min="1" max="9" value="8" id="x81" /></td>
+			<td class="row6 col1 reg4"><input type="text" maxlength="1" value="8" id="x34" /></td>
+			<td class="row6 col2 reg4"><input type="text" maxlength="1" value="9" id="x35" /></td>
+			<td class="row6 col3 reg4"><input type="text" maxlength="1" value="1" id="x36" /></td>
+			<td class="row6 col4 reg5"><input type="text" maxlength="1" value="2" id="x43" /></td>
+			<td class="row6 col5 reg5"><input type="text" maxlength="1" value="3" id="x44" /></td>
+			<td class="row6 col6 reg5"><input type="text" maxlength="1" value="4" id="x45" /></td>
+			<td class="row6 col7 reg6"><input type="text" maxlength="1" value="5" id="x52" /></td>
+			<td class="row6 col8 reg6"><input type="text" maxlength="1" value="6" id="x53" /></td>
+			<td class="row6 col9 reg6"><input type="text" maxlength="1" value="7" id="x54" /></td>
+		</tr>
+<!-- ////////// -->
+		<tr>
+			<td class="row7 col1 reg7"><input type="text" maxlength="1" value="3" id="x55" /></td>
+			<td class="row7 col2 reg7"><input type="text" maxlength="1" value="4" id="x56" /></td>
+			<td class="row7 col3 reg7"><input type="text" maxlength="1" value="5" id="x57" /></td>
+			<td class="row7 col4 reg8"><input type="text" maxlength="1" value="6" id="x64" /></td>
+			<td class="row7 col5 reg8"><input type="text" maxlength="1" value="7" id="x65" /></td>
+			<td class="row7 col6 reg8"><input type="text" maxlength="1" value="8" id="x66" /></td>
+			<td class="row7 col7 reg9"><input type="text" maxlength="1" value="9" id="x73" /></td>
+			<td class="row7 col8 reg9"><input type="text" maxlength="1" value="1" id="x74" /></td>
+			<td class="row7 col9 reg9"><input type="text" maxlength="1" value="2" id="x75" /></td>
+		</tr>
+		<tr>
+			<td class="row8 col1 reg7"><input type="text" maxlength="1" value="6" id="x58" /></td>
+			<td class="row8 col2 reg7"><input type="text" maxlength="1" value="7" id="x59" /></td>
+			<td class="row8 col3 reg7"><input type="text" maxlength="1" value="8" id="x60" /></td>
+			<td class="row8 col4 reg8"><input type="text" maxlength="1" value="9" id="x67" /></td>
+			<td class="row8 col5 reg8"><input type="text" maxlength="1" value="1" id="x68" /></td>
+			<td class="row8 col6 reg8"><input type="text" maxlength="1" value="2" id="x69" /></td>
+			<td class="row8 col7 reg9"><input type="text" maxlength="1" value="3" id="x76" /></td>
+			<td class="row8 col8 reg9"><input type="text" maxlength="1" value="4" id="x77" /></td>
+			<td class="row8 col9 reg9"><input type="text" maxlength="1" value="5" id="x78" /></td>
+		</tr>
+		<tr>
+			<td class="row9 col1 reg7"><input type="text" maxlength="1" value="9" id="x61" /></td>
+			<td class="row9 col2 reg7"><input type="text" maxlength="1" value="1" id="x62" /></td>
+			<td class="row9 col3 reg7"><input type="text" maxlength="1" value="2" id="x63" /></td>
+			<td class="row9 col4 reg8"><input type="text" maxlength="1" value="3" id="x70" /></td>
+			<td class="row9 col5 reg8"><input type="text" maxlength="1" value="4" id="x71" /></td>
+			<td class="row9 col6 reg8"><input type="text" maxlength="1" value="5" id="x72" /></td>
+			<td class="row9 col7 reg9"><input type="text" maxlength="1" value="6" id="x79" /></td>
+			<td class="row9 col8 reg9"><input type="text" maxlength="1" value="7" id="x80" /></td>
+			<td class="row9 col9 reg9"><input type="text" maxlength="1" value="8" id="x81" /></td>
 		</tr>
 	</table>
 </div>
+</div>
+<div id="numbers">
+	<span class="nb" data-num="1">1</span>
+	<span class="nb" data-num="2">2</span>
+	<span class="nb" data-num="3">3</span>
+	<span class="nb" data-num="4">4</span>
+	<span class="nb" data-num="5">5</span>
+	<span class="nb" data-num="6">6</span>
+	<span class="nb" data-num="7">7</span>
+	<span class="nb" data-num="8">8</span>
+	<span class="nb" data-num="9">9</span>
+	<span class="nb" data-num="">X</span>
+</div>
 
-<span class="btn" id="btnvalidate">TEST</span><span class="btn" id="btnnew">NEW BOARD</span><br />
+<span class="btn" id="btnvalidate">TEST</span><span class="btn" id="btnnew">NEW GAME</span><br />
 
 <div id="status"></div>
 
