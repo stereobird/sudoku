@@ -161,7 +161,30 @@ input {
   background: #eee !important;
 }
 
-/* line 129, ../scss/css.scss */
+/* line 128, ../scss/css.scss */
+.corrected {
+  background: #fcc;
+}
+/* line 130, ../scss/css.scss */
+.corrected input {
+  color: #c00;
+}
+
+/* line 136, ../scss/css.scss */
+.entered input {
+  color: #ccc;
+}
+
+/* line 141, ../scss/css.scss */
+.valid {
+  background: #afa;
+}
+/* line 143, ../scss/css.scss */
+.valid input {
+  color: #0a0;
+}
+
+/* line 148, ../scss/css.scss */
 #numbers {
   width: 500px;
   margin: 10px 0 0 0;
@@ -169,7 +192,7 @@ input {
   text-align: center;
 }
 
-/* line 130, ../scss/css.scss */
+/* line 149, ../scss/css.scss */
 #numbers span {
   display: inline-block;
   border-radius: 20px;
@@ -182,35 +205,35 @@ input {
   font-weight: 800;
 }
 
-/* line 131, ../scss/css.scss */
+/* line 150, ../scss/css.scss */
 #numbers span:last-child {
   background: #b00;
 }
 
-/* line 133, ../scss/css.scss */
+/* line 152, ../scss/css.scss */
 .active {
   background: #ffd;
 }
 
-/* line 139, ../scss/css.scss */
+/* line 158, ../scss/css.scss */
 #container {
   width: 500px;
   height: 500px;
   margin: 0;
 }
 
-/* line 145, ../scss/css.scss */
+/* line 164, ../scss/css.scss */
 .board {
   padding: 8px;
 }
 
 @media screen and (max-width: 500px) {
-  /* line 154, ../scss/css.scss */
+  /* line 173, ../scss/css.scss */
   body {
     font-size: 60%;
   }
 
-  /* line 155, ../scss/css.scss */
+  /* line 174, ../scss/css.scss */
   #container {
     min-width: 300px;
     display: inline-block;
@@ -218,14 +241,14 @@ input {
     width: 98%;
     height: auto;
   }
-  /* line 161, ../scss/css.scss */
+  /* line 180, ../scss/css.scss */
   #container:before {
     content: "";
     display: block;
     padding-top: 100%;
   }
 
-  /* line 167, ../scss/css.scss */
+  /* line 186, ../scss/css.scss */
   .board {
     position: absolute;
     top: 0;
@@ -235,7 +258,7 @@ input {
     padding: 4px;
   }
 
-  /* line 175, ../scss/css.scss */
+  /* line 194, ../scss/css.scss */
   #numbers {
     width: 98%;
     min-width: 300px;
@@ -243,12 +266,12 @@ input {
   }
 }
 @media screen and (max-width: 300px) {
-  /* line 183, ../scss/css.scss */
+  /* line 202, ../scss/css.scss */
   body {
     font-size: 40%;
   }
 
-  /* line 184, ../scss/css.scss */
+  /* line 203, ../scss/css.scss */
   #container {
     min-width: 200px;
     display: inline-block;
@@ -256,14 +279,14 @@ input {
     width: 98%;
     height: auto;
   }
-  /* line 190, ../scss/css.scss */
+  /* line 209, ../scss/css.scss */
   #container:before {
     content: "";
     display: block;
     padding-top: 100%;
   }
 
-  /* line 196, ../scss/css.scss */
+  /* line 215, ../scss/css.scss */
   .board {
     position: absolute;
     top: 0;
@@ -273,7 +296,7 @@ input {
     padding: 2px;
   }
 
-  /* line 204, ../scss/css.scss */
+  /* line 223, ../scss/css.scss */
   #numbers {
     width: 98%;
     font-size: 1.5em;
