@@ -18,7 +18,7 @@ body {
 
 h1 {
 	font-size: 5em;
-	line-height: 1em;
+	line-height: .85em;
 	letter-spacing: -.1em;
 	margin: 0;
 }
@@ -32,18 +32,18 @@ h1 {
 		cursor:pointer;
 		font-weight: 800;
 	}
-	#menu {
-		right: 6px;
-		top: 10px;
-		font-size: 2em;
-		color: #09c;
-		&:hover {
-			color: #0ad;
-		}
+//	#menu {
+//		right: 6px;
+//		top: 10px;
+//		font-size: 2em;
+//		color: #09c;
+//		&:hover {
+//			color: #0ad;
+//		}
 	}
 	#timer {
 		right: 6px;
-		bottom: 6px;
+		bottom: 0;
 		color: #ddd;
 		font-size: 1.5em;
 	}
@@ -140,7 +140,6 @@ input {
 
 	}
 .empty {
-	//background: transparent;
 	input {
 		color: #000;
 		cursor: pointer;
@@ -210,6 +209,7 @@ input {
 // default sizing
 
 #container {
+	position: relative;
 	width: 500px;
 	height: 500px;
 	margin: 0;
@@ -220,7 +220,7 @@ input {
 }
 
 #sudoku {
-	padding:8px;
+	padding: 8px;
 }
 
 
@@ -253,6 +253,24 @@ input {
 		width: 100%;
 		min-width: 300px;
 		margin: 0;
+	}
+}
+
+#resume {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin:-30px -100px;
+	width: 200px;
+	text-align: center;
+	background: #4a0;
+	padding: 10px;
+	color: #fff;
+	font-weight: 800;
+	cursor: pointer;
+	font-size: 3em;
+	&:hover {
+		background: #6d0;
 	}
 }
 

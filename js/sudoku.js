@@ -219,6 +219,8 @@
 		"row errors: " + rowerrors + 
 		"<br />column errors: " + colerrors + 
 		"<br />region errors: " + regerrors);
+		// todo: if valid, stop the timer
+		//sudoku.timer("stop",0);
 	};
 
 	sudoku.validate = function(type, i) {
@@ -262,6 +264,8 @@
 			wrongcnt = 0,
 			emptycnt = 0,
 			ii = key.length;
+		// stop the timer
+		sudoku.timer("stop",0);
 		// get current state of board so we can compare incoming to existing
 		$("input").each(function() {
 			if ($(this).val().length > 0) {
@@ -303,14 +307,18 @@
 		return str;
 	};
 
-	sudoku.timer = function(cmd,sec) {
+	// pause is optional, if true it will toggle the paused state
+	sudoku.timer = function(cmd,sec,pause) {
 		if (cmd === "start") {
 			if (sec === 0) {
 				// clear out any existing timer
 				clearInterval(timer);
-				$("#timer").html("00:00");
+				$("#timer").html("00:00").attr("title", "click to pause game");
 			}
 			$("#timer").addClass("running");
+			if (pause) {
+				sudoku.pause("unpause");
+			}
 			// delay starting of the timer just a tiny bit to make everyone feel good
 			setTimeout(function() {
 				timer = setInterval(function(){
@@ -321,14 +329,28 @@
 				}, 1000);
 			}, 250);
 		} else if (cmd == "stop") {
-			$("#timer").removeClass("running");
+			$("#timer").removeClass("running").attr("title", "");
 			clearInterval(timer);
+			if (pause) {
+				sudoku.pause("pause");
+			}
 		}
 	};
 
 	sudoku.timeadj = function(val) {
 		return (val > 9) ? val : "0" + val;
 	};
+
+	sudoku.pause = function(cmd) {
+		if (cmd === "pause") {
+			$("input").hide();
+			$("#resume").show();
+		} else {
+			$("input").show();
+			$("#resume").hide();
+		}
+	};
+
 
 ////////////////////////////////////////////////////////////
 
@@ -393,25 +415,23 @@
 		sudoku.solve();
 	});
 
-	// crude timer
+	// pause timer
 	$("#timer").on("click", function() {
 		if ($(this).hasClass("running")) {
-			// pause timer
-			sudoku.timer("stop",0);
-			// TODO: do pause behavior
-			// ...
+			sudoku.timer("stop",0,true);
 		} else {
-			// TODO: undo pause behavior
-			// ...
-			// start timer
-			sudoku.timer("start",time);
+			sudoku.timer("start",time,true);
 		}
 	});
 
-	$("#menu").on("click", function() {
-		sudoku.timer("stop",0);
-		$("#menupanel").show();
+	$("#resume").on("click", function() {
+		sudoku.timer("start",time,true);
 	});
+
+	//$("#menu").on("click", function() {
+	//	sudoku.timer("stop",0);
+	//	$("#menupanel").show();
+	//});
 
 }(window.sudoku = window.sudoku || {}, jQuery));
 
