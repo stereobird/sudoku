@@ -1,12 +1,10 @@
-
 @import 'reset';
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:800,400);
 
 $font: 'Open Sans', Arial, sans-serif;
 
 $smallscreen: "screen and (max-width: 500px)";
-$tinyscreen: "screen and (max-width: 300px)";
-
+$tinyscreen: "screen and (max-width: 360px)";
 
 // basics
 
@@ -19,74 +17,102 @@ body {
 }
 
 h1 {
-	font-size:7em;
-	line-height:1em;
-	letter-spacing:-.1em;
-	margin:0;
+	font-size: 5em;
+	line-height: 1em;
+	letter-spacing: -.1em;
+	margin: 0;
 }
 
-
+#hdr {
+	position: relative;
+	max-width: 484px;
+	padding:0 7px;
+	span {
+		position: absolute;
+		cursor:pointer;
+		font-weight: 800;
+	}
+	#menu {
+		right: 6px;
+		top: 10px;
+		font-size: 2em;
+		color: #09c;
+		&:hover {
+			color: #0ad;
+		}
+	}
+	#timer {
+		right: 6px;
+		bottom: 6px;
+		color: #ddd;
+		font-size: 1.5em;
+	}
+}
 
 #board {
-	border:2px solid #999;
-
-	tr td {
-		width: 11.1%;
-		height: 11.1%;
-		text-align: center;
-		padding: 0;
-		margin: 0;
-		vertical-align: middle;
-		border-right: 1px solid #ccc;
-		border-bottom: 1px solid #ccc;
-		//box-sizing: border-box;
-		//font-size: 1.5em;
-		border-collapse: collapse;
+	border:5px solid #999;
+	tr {
+		td {
+			width: 11.1%;
+			height: 11.1%;
+			text-align: center;
+			padding: 0;
+			margin: 0;
+			vertical-align: middle;
+			border-collapse: collapse;
+			border-right: 1px solid #ccc;
+			border-bottom: 1px solid #ccc;
+		}
+		td:hover {
+			background:#ffc;
+		}
+		td:nth-child(3) {
+			border-right: 2px solid #aaa;
+		}
+		td:nth-child(6) {
+			border-right: 2px solid #aaa;
+		}
+		td:nth-child(9) {
+			border-right: 0;
+		}
 	}
-
-	tr td:hover {
-		background:#ffc;
-	}
-
-	tr td:nth-child(3) {
-		border-right: 2px solid #666;
-	}
-
-	tr td:nth-child(6) {
-		border-right: 2px solid #666;
-	}
-
-	tr td:nth-child(9) {
-		border-right: 0;
-	}
-
 	tr:nth-child(3) td {
-		border-bottom: 2px solid #666;
+		border-bottom: 2px solid #aaa;
 	}
-
 	tr:nth-child(6) td {
-		border-bottom: 2px solid #666;
-	}
-
-}
-
-.btn {
-	display: block;
-	float: left;
-	margin: 9px 0 0 5px;
-	padding: 10px;
-	text-align: center;
-	background-color: #09c;
-	color: #fff;
-	font-size: 18px;
-	cursor: pointer;
-	&:hover {
-		background-color:#0c9 !important;
+		border-bottom: 2px solid #aaa;
 	}
 }
 
-#btnnew {
-	background-color: #c90;
+#btns {
+	max-width: 484px;
+	padding: 8px;
+	div.col3 {
+		width: 33.3%;
+		min-width:65px;
+		float: left;
+		div {
+			margin: 0 2px;
+			padding: 10px;
+			text-align: center;
+			background: #09c;
+			color: #fff;
+			font-size: 1.4em;
+			letter-spacing: -.05em;
+			font-weight: 800;
+			cursor: pointer;
+			white-space: nowrap;
+			&:hover {
+				background: #0b7 !important;
+			}
+		}
+	}
+	#btnnew {
+		background: #c90;
+	}
+	#btnsolve {
+		background: #c00;
+	}
 }
 
 
@@ -128,7 +154,7 @@ input {
 .corrected {
 	background: #fcc;
 	input {
-		color: #c00;
+		color: #a00;
 	}
 }
 
@@ -141,13 +167,41 @@ input {
 .valid {
 	background:#afa;
 	input {
-		color:#0a0;
+		color:#070;
 	}
 }
 
-#numbers {width:500px;margin:10px 0 0 0;padding:0; text-align:center;}
-#numbers span {display:inline-block; border-radius:20px; background:#09c; color:#fff; padding:2px 6px; font-size:1.4em; cursor:pointer; margin:0 .05em; font-weight:800;}
-#numbers span:last-child {background: #b00;}
+#numbers {
+	width: 500px;
+	margin: 10px 0 0 0;
+	padding: 0;
+	text-align: center;
+	clear: both;
+	&:before, &:after {
+		content: "";
+		content: none;
+	}
+	span {
+		display: inline-block;
+		border-radius: 20px;
+		background: #09c;
+		color: #fff;
+		padding: 2px 6px;
+		font-size: 1.4em;
+		cursor: pointer;
+		margin: 0 .05em;
+		font-weight: 800;
+		&:hover {
+			background:#069;
+		}
+		&:last-child {
+			background: #b00;
+		}
+		&:last-child:hover {
+			background: #600;
+		}
+	}
+}
 
 .active {background: #ffd;}
 
@@ -159,9 +213,13 @@ input {
 	width: 500px;
 	height: 500px;
 	margin: 0;
+	&:before, &:after {
+		content: "";
+		content: none;
+	}
 }
 
-.board {
+#sudoku {
 	padding:8px;
 }
 
@@ -170,12 +228,12 @@ input {
 // sizing for smaller screens
 
 @media #{$smallscreen} {
-	body {font-size:60%;}
+	body {font-size:80%;}
 	#container {
 		min-width: 300px;
 		display: inline-block;
 		position: relative;
-		width: 98%;
+		width: 100%;
 		height: auto;
 		&:before {
 			content: "";
@@ -183,7 +241,7 @@ input {
 			padding-top: 100%;
 		}
 	}
-	.board {
+	#sudoku {
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -192,19 +250,19 @@ input {
 		padding:4px;
 	}
 	#numbers {
-		width: 98%;
+		width: 100%;
 		min-width: 300px;
 		margin: 0;
 	}
 }
 
 @media #{$tinyscreen} {
-	body {font-size:40%;}
+	body {font-size:60%;}
 	#container {
 		min-width: 200px;
 		display: inline-block;
 		position: relative;
-		width: 98%;
+		width: 100%;
 		height: auto;
 		&:before {
 			content: "";
@@ -212,18 +270,18 @@ input {
 			padding-top: 100%;
 		}
 	}
-	.board {
+	#sudoku {
 		position: absolute;
 		top: 0;
 		right: 0;
 		bottom: 0;
 		left: 0;
-		padding:2px;
+		padding: 2px;
 	}
 	#numbers {
-		width:98%;
-		font-size: 1.5em;
+		width: 98%;
+		font-size: 1.4em;
 		min-width: 200px;
-		margin:0;
+		margin: 0;
 	}
 }
