@@ -4,6 +4,8 @@
 		map = {},
 		key = [],
 		time = 0,
+		difficulty = 45,
+		small = window.matchMedia("only screen and (max-width: 760px)"),
 		timer;
 
 	sudoku.init = function() {
@@ -57,7 +59,7 @@
 			return false;
 		} else {
 			// no empties exist, prepare the board for playing
-			sudoku.makeplayable(map.row, 50);
+			sudoku.makeplayable(map.row, difficulty);
 			return true;
 		}
 	};
@@ -144,10 +146,13 @@
 					// n% of the time (level), leave a blank cell
 					if (rnd > (level/100)) {
 						$("#x" + m + i).val(v);
-						$("#x" + m + i).attr("type", "text").attr("readonly", "readonly").parent().removeClass("empty").addClass("filled");
+						$("#x" + m + i).attr("type", "text").attr("readonly", "readonly").parent().removeClass("active empty corrected valid entered").addClass("filled");
 					} else {
 						$("#x" + m + i).val("");
-						$("#x" + m + i).removeAttr("readonly").parent().removeClass("filled").addClass("empty");
+						$("#x" + m + i).removeAttr("readonly").parent().removeClass("active filled corrected valid entered").addClass("empty");
+						if (small.matches) {
+							$("#x" + m + i).attr("readonly", "readonly");
+						}
 					}
 					// push to the key array for quick solving
 					key.push(v);
@@ -196,31 +201,38 @@
 
 	// manually validate (don't use key) *just in case* there's more than one valid solution to the board
 	sudoku.check = function() {
-		var rowerrors = [],
-			colerrors = [],
-			regerrors = [],
+		var errors = [],
+			stats,
+			empties,
+			okbtn = '<div id="btnok" class="btn">OK</div>',
 			i;
 		// loop through all rows/cols/squares 9x
 		for (i = 0; i < 9; ++i) {
 			// check row
-			rowerrors.push(sudoku.validate("row", i));
+			errors.push(sudoku.validate("row", i));
 			// check column
-			colerrors.push(sudoku.validate("col", i));
-			// check square
-			regerrors.push(sudoku.validate("reg", i));
+			errors.push(sudoku.validate("col", i));
+			// check region
+			errors.push(sudoku.validate("reg", i));
 		}
-		// all zeroes means no errors in the row/column/square [0,0,0,0,0,0,0,0,0]
-		// 1 indicates a duplicated number, e.g. [0,0,0,1,0,1,1,1,0]
-		// 2 indictaes an empty space or invalid charcater, e.g. [0,0,2,2,0,0,0,0,0]
-		// (2 takes precedence)
-
-		// temporarily... just show status until a display is built
-		$("#status").html(
-		"row errors: " + rowerrors + 
-		"<br />column errors: " + colerrors + 
-		"<br />region errors: " + regerrors);
-		// todo: if valid, stop the timer
-		//sudoku.timer("stop",0);
+		// errors are all in one array (row,col,reg; repeat)
+		if (errors.indexOf(2) != -1) {
+			// empties exist
+			empties = sudoku.empties();
+			stats = (empties > 1) ? "Oh dear! There are still " + empties + " empty cells remaining!<br /><br />" : "Oh no! One more empty cell left!<br /><br />";
+		} else if (errors.indexOf(1) != -1) {
+				// no empties, but duplicates exist
+				stats = "Uh oh! All rows, columns and regions must contain each digit from 1-9 only ONCE.<br /><br />";
+		} else {
+			// everything looks good
+			sudoku.timer("stop",0);
+			$("#numbers, #btns").hide();
+			stats = "You did it! You are really amazing.<br /><br />";
+			okbtn = '<div id="btnreplay" class="btn">PLAY AGAIN</div>';
+		}
+		$("#new").hide();
+		$("#end").html(stats + okbtn).show();
+		$("#haiku").html("<div>" + sudoku.gimmehaiku() + "</div>").show();
 	};
 
 	sudoku.validate = function(type, i) {
@@ -263,7 +275,11 @@
 			rightcnt = 0,
 			wrongcnt = 0,
 			emptycnt = 0,
+			stats,
+			replaybtn,
 			ii = key.length;
+		// just in case we're in a paused state
+		sudoku.pause("unpause");
 		// stop the timer
 		sudoku.timer("stop",0);
 		// get current state of board so we can compare incoming to existing
@@ -274,7 +290,7 @@
 				board.push(0);
 			}
 		});
-		// solve it!
+		// run through cells and check against key, treat appropriately
 		while(ii--) {
 			cell = $(".x" + ii);
 			if (board[ii] == 0) {
@@ -296,8 +312,15 @@
 				}
 			}
 		}
+		$("#new").hide();
 		// summary info
-		$("#status").html(rightcnt + " correct " + sudoku.pluralize(rightcnt,"cell") + ", " + emptycnt + " empty " + sudoku.pluralize(emptycnt,"cell") + ", " + wrongcnt + " incorrect " + sudoku.pluralize(wrongcnt,"cell"));
+		stats = rightcnt + " correct " + sudoku.pluralize(rightcnt,"cell") + "<br />" + 
+			  emptycnt + " empty " + sudoku.pluralize(emptycnt,"cell") + "<br />" + 
+			  wrongcnt + " incorrect " + sudoku.pluralize(wrongcnt,"cell") + "<br /><br />";
+		replaybtn = '<div id="btnreplay" class="btn">PLAY AGAIN</div>';
+		$("#numbers, #btns").hide();
+		$("#haiku").html("<div>" + sudoku.gimmehaiku() + "</div>").show();
+		$("#end").html(stats + replaybtn).show();
 	};
 
 	sudoku.pluralize = function(num,str) {
@@ -337,8 +360,30 @@
 		}
 	};
 
+	// show a haiku message when a game has been solved
+	sudoku.gimmehaiku = function() {
+		var haiku = [
+			"this is so easy<br />gonna finish so fast, wait<br />seven can't go here",
+			"looks perfect to me<br />but two fives are in this row<br />where did i go wrong",
+			"click the timer, friend<br />your active game will be paused<br />maybe take a nap",
+			"logic, all you need<br />or maybe just lots of time<br />and tons of patience",
+			"train will be here soon<br />time for one quick Sudoku<br />missed the train again"
+			];
+		return haiku[Math.floor(Math.random()*haiku.length)];
+	};
+
 	sudoku.timeadj = function(val) {
 		return (val > 9) ? val : "0" + val;
+	};
+
+	sudoku.empties = function() {
+		var empties = 0;
+		$("#board input").each(function() {
+			if($(this).val() === "") {
+				empties++;
+			}
+		});
+		return empties;
 	};
 
 	sudoku.pause = function(cmd) {
@@ -351,6 +396,17 @@
 		}
 	};
 
+	sudoku.newgame = function() {
+		var easy,
+			hard,
+			hopeless;
+		easy = $("<div>").attr("class", "btn").attr("id", "btneasy").attr("data-diff", "25").html("EASY");
+		hard = $("<div>").attr("class", "btn").attr("id", "btnhard").attr("data-diff", "50").html("HARD");
+		hopeless = $("<div>").attr("class", "btn").attr("id", "btnhopeless").attr("data-diff", "85").html("HOPELESS");
+		$("#end").hide();
+		$("#new").html("New Game:<br />").append(easy).append("<br />").append(hard).append("<br />").append(hopeless).show();
+	};
+
 
 ////////////////////////////////////////////////////////////
 
@@ -358,19 +414,9 @@
 	$("#sudoku").on("input", "input", function() {
 		// limit to nums 1-9
 		$(this).val($(this).val().replace(/[^1-9]/,""));
-		// how many empties are left?
-		var empties = 0;
-		$("#board input").each(function() {
-			if($(this).val() === "") {
-				empties++;
-			}
-		});
-		if (empties === 0) {
-			//sudoku.validate("check");
-			// need to move validation preprocessing into function
-		} else {
-			// temporarily...
-			$("#status").append(empties + "|");
+		// are there any empties left?
+		if (sudoku.empties() === 0) {
+			sudoku.check();
 		}
 	});
 
@@ -390,17 +436,25 @@
 
 	// insert a number in the active cell on click
 	$("#numbers span").on("click", function() {
-		$("#board tr td.active input").val($(this).attr("data-num"));
+		$("#board tr td.active.empty input").val($(this).attr("data-num"));
+	});
+
+	// new game
+	$("#outer").on("click", "#btnnew, #btnreplay", function() {
+		sudoku.newgame();
 	});
 
 	// load a new board
-	$("#btnnew").on("click", function() {
+	$("#outer").on("click", "#new .btn", function() {
+		difficulty = $(this).attr("data-diff");
 		// clear map first so the board is fresh
 		sudoku.clearmap();
 		// reset internal timekeeper
 		time = 0;
 		// now go on, get building
 		sudoku.buildgame(0,0);
+		$("#numbers, #btns").show();
+		$("#end, #haiku, #new").hide();
 		// restart ui timer
 		sudoku.timer("start",0);
 	});
@@ -408,6 +462,11 @@
 	// validate board
 	$("#btncheck").on("click", function(){
 		sudoku.check();
+	});
+
+	// dismiss checker dialog
+	$("#outer").on("click", "#btnok", function() {
+		$("#end").hide();
 	});
 
 	// solve board
@@ -427,11 +486,6 @@
 	$("#resume").on("click", function() {
 		sudoku.timer("start",time,true);
 	});
-
-	//$("#menu").on("click", function() {
-	//	sudoku.timer("stop",0);
-	//	$("#menupanel").show();
-	//});
 
 }(window.sudoku = window.sudoku || {}, jQuery));
 

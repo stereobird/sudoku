@@ -1,42 +1,43 @@
 <html>
 <head>
-
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sudoku</title>
 <link rel="stylesheet" type="text/css" href="css/css.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 </head>
 <body>
-
-<div id="hdr">
-	<h1>Sudoku</h1>
-	<!--span id="menu">&#9776;</span-->
-	<span id="timer"></span>
+<div id="outer">
+	<div id="hdr">
+		<h1>Sudoku</h1>
+		<!--span id="menu">&#9776;</span-->
+		<span id="timer"></span>
+	</div>
+	<div id="container">
+		<div id="sudoku"></div>
+		<div id="resume" class="btn">PLAY!</div>
+		<div id="end"></div>
+		<div id="new"></div>
+	</div>
+	<div id="numbers">
+		<span class="nb" data-num="1">1</span>
+		<span class="nb" data-num="2">2</span>
+		<span class="nb" data-num="3">3</span>
+		<span class="nb" data-num="4">4</span>
+		<span class="nb" data-num="5">5</span>
+		<span class="nb" data-num="6">6</span>
+		<span class="nb" data-num="7">7</span>
+		<span class="nb" data-num="8">8</span>
+		<span class="nb" data-num="9">9</span>
+		<span class="nb" data-num="">X</span>
+	</div>
+	<div id="btns">
+		<div class="col3"><div id="btncheck" class="btn">CHECK</div></div>
+		<div class="col3"><div id="btnsolve" class="btn">GIVE UP</div></div>
+		<div class="col3"><div id="btnnew" class="btn">NEW GAME</div></div>
+	</div>
+	<div id="haiku"></div>
 </div>
-<div id="container">
-	<div id="sudoku"></div>
-	<div id="resume" style="display:none;">PLAY!</div>
-</div>
-<div id="numbers">
-	<span class="nb" data-num="1">1</span>
-	<span class="nb" data-num="2">2</span>
-	<span class="nb" data-num="3">3</span>
-	<span class="nb" data-num="4">4</span>
-	<span class="nb" data-num="5">5</span>
-	<span class="nb" data-num="6">6</span>
-	<span class="nb" data-num="7">7</span>
-	<span class="nb" data-num="8">8</span>
-	<span class="nb" data-num="9">9</span>
-	<span class="nb" data-num="">X</span>
-</div>
-
-<div id="btns">
-	<div class="col3"><div id="btncheck">CHECK</div></div>
-	<div class="col3"><div id="btnsolve">SOLVE</div></div>
-	<div class="col3"><div id="btnnew">NEW GAME</div></div>
-</div>
-
-<div id="status"></div>
 
 <script src="js/sudoku.js"></script>
 </body>
