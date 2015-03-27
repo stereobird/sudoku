@@ -57,13 +57,10 @@ var uimap = {},
 
 All of these things need to exist here in the scope so that various functions can access them. Empty declarations are `uimap`, `map`, `key`, `time` and `timer`. The first three are used for the grid of numbers in a current board. `time` and `timer` need to be accessed to pause/start the game timer appropriately.
 
-<<<<<<< HEAD
 ```js
 difficulty = 45,
 ```
 
-=======
->>>>>>> origin/master
 `difficulty` is the _initial_ board's difficulty setting, from 1 (easiest) to 100 (hardest). This setting applies to the board loaded at runtime only, not a board generated from the easy/hard/hopeless buttons. Default is 45, which means about 45% of cells will be empty in the initial game board.
 
 ```js
@@ -73,16 +70,13 @@ hopeless = $("<div>").attr("class", "btn").attr("id", "btnhopeless").attr("data-
 ```
 If you want to change the difficulty levels for the easy/hard/hopeless buttons, changes can be made in `sudoku.newgame`. Default difficulty levels are easy: 25, hard: 50, hopeless: 80. You can also remove or add buttons here.
 
-<<<<<<< HEAD
 ```js
 small = window.matchMedia("only screen and (max-width: 760px)");
 ```
 
 The "760px" portion of `small` is the threshold at which a mobile keyboard is prevented. What this means is that mobile devices (or any screen under 760 pixels wide) will have empty input cells set to "readonly", so users shouldn't have their game covered up by their device's keyboard. Users on such screens will be required to use the number buttons to fill in empty cells. You can adjust the width as desired. Set it super high to eliminate keyboard entry for just about everyone.
-=======
 
 `small` is the threshold at which a mobile keyboard is prevented. What this means is that mobile devices (or any screen under 760px wide) will have empty cells set to "readonly", so they shouldn't have their game covered up by their device's keyboard. They will be required to use the number buttons to fill in empty cells. You can adjust the width as desired.
->>>>>>> origin/master
 
 ```js
 if (small.matches) {
@@ -94,15 +88,10 @@ You may want to use a different behavior, such as changing the input `type` to "
 
 Attribution
 ===========
-<<<<<<< HEAD
 
 Inspired by Peter Norvig's [python backtracking](http://norvig.com/sudoku.html).
 Portions of the generator and cell traversal contained herein have roots in Moriel Schottlender's [javascript backtracking algorithm](http://moriel.smarterthanthat.com/tips/javascript-sudoku-backtracking-algorithm/).
 `_reset.scss` is the good ol' [meyerweb reset](http://meyerweb.com/eric/tools/css/reset/).
-=======
-Inspired by Peter Norvig's [python backtracking](http://norvig.com/sudoku.html).
-Portions of the generator and cell traversal contained herein have roots in Moriel Schottlender's [javascript backtracking algorithm](http://moriel.smarterthanthat.com/tips/javascript-sudoku-backtracking-algorithm/).
->>>>>>> origin/master
 
 Changelog
 =========
