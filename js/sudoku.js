@@ -3,10 +3,10 @@
 	var uimap = {},
 		map = {},
 		key = [],
-		time = 0,
+		time,
+		timer,
 		difficulty = 45,
-		small = window.matchMedia("only screen and (max-width: 760px)"),
-		timer;
+		small = window.matchMedia("only screen and (max-width: 760px)");
 
 	sudoku.init = function() {
 		$("#sudoku").html(sudoku.makeboard());
@@ -402,7 +402,7 @@
 			hopeless;
 		easy = $("<div>").attr("class", "btn").attr("id", "btneasy").attr("data-diff", "25").html("EASY");
 		hard = $("<div>").attr("class", "btn").attr("id", "btnhard").attr("data-diff", "50").html("HARD");
-		hopeless = $("<div>").attr("class", "btn").attr("id", "btnhopeless").attr("data-diff", "85").html("HOPELESS");
+		hopeless = $("<div>").attr("class", "btn").attr("id", "btnhopeless").attr("data-diff", "80").html("HOPELESS");
 		$("#end").hide();
 		$("#new").html("New Game:<br />").append(easy).append("<br />").append(hard).append("<br />").append(hopeless).show();
 	};
