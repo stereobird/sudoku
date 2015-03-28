@@ -224,6 +224,8 @@
 		} else {
 			// everything looks good
 			sudoku.timer("stop",0);
+			// unbind timer click
+			$("#timer").off("click");
 			$("#numbers, #btns").hide();
 			stats = "You did it! You are really amazing.<br /><br />";
 			okbtn = '<div id="btnreplay" class="btn">PLAY AGAIN</div>';
@@ -231,8 +233,6 @@
 		}
 		$("#new").hide();
 		$("#end").html(stats + okbtn).show();
-		// unbind timer click
-		$("#timer").off("click");
 	};
 
 	sudoku.validate = function(type, i) {
@@ -275,7 +275,7 @@
 			stats,
 			replaybtn,
 			ii = key.length;
-		// just in case we're in a paused state
+		// just in case we're in a paused state, unpause to show the board
 		sudoku.pause("unpause");
 		// stop the timer
 		sudoku.timer("stop",0);
@@ -404,16 +404,14 @@
 	sudoku.newgame = function() {
 		var easy,
 			hard,
-			hopeless;
+			hopeless,
+			cancel;
+		$("#end").hide();
 		easy = $("<div>").attr("class", "btn").attr("id", "btneasy").attr("data-diff", "25").html("EASY");
 		hard = $("<div>").attr("class", "btn").attr("id", "btnhard").attr("data-diff", "50").html("HARD");
 		hopeless = $("<div>").attr("class", "btn").attr("id", "btnhopeless").attr("data-diff", "80").html("HOPELESS");
-		$("#end").hide();
-		$("#new").html("New Game:<br />").append(easy).append("<br />").append(hard).append("<br />").append(hopeless).show();
-		// re-bind timer click
-		$("#timer").on("click", function() {
-			sudoku.timer("toggle");
-		});
+		cancel = (!$("#haiku").is(":empty") && $("#haiku").is(":visible")) ? "" : $("<div>").attr("id", "btncancel").html("X"); 
+		$("#new").html("New Game:<br />").append(easy).append(hard).append(hopeless).append(cancel).show();
 	};
 
 	// prevent unwanted characters, and detect remaining empties at the same time
@@ -457,12 +455,23 @@
 		sudoku.clearmap();
 		// reset internal timekeeper
 		time = 0;
+		// make sure we aren't in a paused state
+		sudoku.pause("unpause");
 		// now go on, get building
 		sudoku.buildgame(0,0);
 		$("#numbers, #btns").show();
 		$("#end, #haiku, #new").hide();
 		// restart ui timer
 		sudoku.timer("start",0);
+		// re-bind timer click
+		$("#timer").off("click").on("click", function() {
+			sudoku.timer("toggle");
+		});
+	});
+
+	// cancel new game dialog
+	$("#outer").on("click", "#btncancel", function() {
+		$("#new").hide();
 	});
 
 	// validate board
@@ -473,10 +482,6 @@
 	// dismiss checker dialog
 	$("#outer").on("click", "#btnok", function() {
 		$("#end").hide();
-		// re-bind timer click
-		$("#timer").on("click", function(){
-			sudoku.timer("toggle");
-		});
 	});
 
 	// solve board
