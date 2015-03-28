@@ -229,10 +229,10 @@
 			$("#numbers, #btns").hide();
 			stats = "You did it! You are really amazing.<br /><br />";
 			okbtn = '<div id="btnreplay" class="btn">PLAY AGAIN</div>';
+			$("#haiku").html("<div>" + sudoku.gimmehaiku() + "</div>").show();
 		}
 		$("#new").hide();
 		$("#end").html(stats + okbtn).show();
-		$("#haiku").html("<div>" + sudoku.gimmehaiku() + "</div>").show();
 	};
 
 	sudoku.validate = function(type, i) {
