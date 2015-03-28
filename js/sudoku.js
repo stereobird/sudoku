@@ -45,23 +45,21 @@
 				// keep trying (recursive)
 				if (sudoku.buildgame(rowi,coli)) {
 					return true;
-				} else {
-					// number didn't work, get it out of here
-					// clear the input
-					uimap[rowi][coli].val("");
-					// remove from maps
-					map.row[rowi][coli] = "";
-					map.col[coli][rowi] = "";
-					map.reg[rgri][rgci][regi] = "";
 				}
+				// number didn't work, get it out of here
+				// clear the input
+				uimap[rowi][coli].val("");
+				// remove from maps
+				map.row[rowi][coli] = "";
+				map.col[coli][rowi] = "";
+				map.reg[rgri][rgci][regi] = "";
 			}
 			// no number worked here, recursively step backwards
 			return false;
-		} else {
-			// no empties exist, prepare the board for playing
-			sudoku.makeplayable(map.row, difficulty);
-			return true;
 		}
+		// no empties exist, prepare the board for playing
+		sudoku.makeplayable(map.row, difficulty);
+		return true;
 	};
 
 	sudoku.getnextempty = function(x,y) {
@@ -123,7 +121,7 @@
 		var val,
 			i;
 		for (i = 0; i < 9; i++) {
-			val = parseInt(typemap[i]);
+			val = parseInt(typemap[i],10);
 			if (val > 0) {
 				// remove from array
 				if (nums.indexOf(val) > -1) {
@@ -156,7 +154,7 @@
 					}
 					// push to the key array for quick solving
 					key.push(v);
-				};
+				}
 			});
 		});
 	};
@@ -179,15 +177,15 @@
 				uimap[i][ii] = $("<input>").attr("maxlength", 1).attr("type", "text").attr("id", "x" + i + ii).data("row", i).data("col", ii).attr("class", "x" + count);
 				count++;
 				// make cells
-				if (i < 9 && ii < 9) {regi = 8}
-				if (i < 9 && ii < 6) {regi = 7}
-				if (i < 9 && ii < 3) {regi = 6}
-				if (i < 6 && ii < 9) {regi = 5}
-				if (i < 6 && ii < 6) {regi = 4}
-				if (i < 6 && ii < 3) {regi = 3}
-				if (i < 3 && ii < 9) {regi = 2}
-				if (i < 3 && ii < 6) {regi = 1}
-				if (i < 3 && ii < 3) {regi = 0}
+				if (i < 9 && ii < 9) {regi = 8;}
+				if (i < 9 && ii < 6) {regi = 7;}
+				if (i < 9 && ii < 3) {regi = 6;}
+				if (i < 6 && ii < 9) {regi = 5;}
+				if (i < 6 && ii < 6) {regi = 4;}
+				if (i < 6 && ii < 3) {regi = 3;}
+				if (i < 3 && ii < 9) {regi = 2;}
+				if (i < 3 && ii < 6) {regi = 1;}
+				if (i < 3 && ii < 3) {regi = 0;}
 				td = $("<td>").addClass("row" + i).addClass("col" + ii).addClass("reg" + regi);
 				td.append(uimap[i][ii]);
 				// add to the row
@@ -216,11 +214,11 @@
 			errors.push(sudoku.validate("reg", i));
 		}
 		// errors are all in one array (row,col,reg; repeat)
-		if (errors.indexOf(2) != -1) {
+		if (errors.indexOf(2) !== -1) {
 			// empties exist
 			empties = sudoku.empties();
 			stats = (empties > 1) ? "Oh dear! There are still " + empties + " empty cells remaining!<br /><br />" : "Oh no! One more empty cell left!<br /><br />";
-		} else if (errors.indexOf(1) != -1) {
+		} else if (errors.indexOf(1) !== -1) {
 				// no empties, but duplicates exist
 				stats = "Uh oh! All rows, columns and regions must contain each digit from 1-9 only ONCE.<br /><br />";
 		} else {
@@ -233,6 +231,8 @@
 		}
 		$("#new").hide();
 		$("#end").html(stats + okbtn).show();
+		// unbind timer click
+		$("#timer").off("click");
 	};
 
 	sudoku.validate = function(type, i) {
@@ -240,7 +240,7 @@
 			sum  = 0,
 			num;
 		$.each($("." + type + i + " input"), function(){
-			num = parseInt($(this).val());
+			num = parseInt($(this).val(),10);
 			// make sure it's a number, it's not infinity, it's not a decimal, it's between 0 and 10
 			if (typeof num === "number" && isFinite(num) && num % 1 === 0 && num > 0 && num < 10) {
 				// make sure number is unique
@@ -256,16 +256,13 @@
 		if (nums.length === 9) {
 			// should total 45 (if not, a number was duplicated somewhere in this collection)
 			if (sum === 45) {
-				// all good
 				return 0;
-			} else {
-				// number duplicated in col
-				return 1;
 			}
-		} else {
-			// not enough valid numbers in col
-			return 2;
+			// number duplicated in col
+			return 1;
 		}
+		// not enough valid numbers in col
+		return 2;
 	};
 
 	// get the current state of the board and compare to key
@@ -285,7 +282,7 @@
 		// get current state of board so we can compare incoming to existing
 		$("input").each(function() {
 			if ($(this).val().length > 0) {
-				board.push(parseInt($(this).val()));
+				board.push(parseInt($(this).val(),10));
 			} else {
 				board.push(0);
 			}
@@ -293,13 +290,13 @@
 		// run through cells and check against key, treat appropriately
 		while(ii--) {
 			cell = $(".x" + ii);
-			if (board[ii] == 0) {
+			if (board[ii] === 0) {
 				cell.val(key[ii]);
 				emptycnt++;
 				if (cell.parent().hasClass("empty")) {
 					cell.parent().removeClass("active").addClass("entered");
 				}
-			} else if (key[ii] != board[ii]) {
+			} else if (key[ii] !== board[ii]) {
 				cell.val(key[ii]);
 				wrongcnt++;
 				if (cell.parent().hasClass("empty")) {
@@ -321,6 +318,8 @@
 		$("#numbers, #btns").hide();
 		$("#haiku").html("<div>" + sudoku.gimmehaiku() + "</div>").show();
 		$("#end").html(stats + replaybtn).show();
+		// unbind timer click
+		$("#timer").off("click");
 	};
 
 	sudoku.pluralize = function(num,str) {
@@ -350,13 +349,33 @@
 					// cast seconds up in scope
 					time = sec;
 				}, 1000);
-			}, 250);
-		} else if (cmd == "stop") {
+			}, 200);
+		} else if (cmd === "stop") {
 			$("#timer").removeClass("running").attr("title", "");
 			clearInterval(timer);
 			if (pause) {
 				sudoku.pause("pause");
 			}
+		} else if (cmd === "toggle") {
+			if ($("#timer").hasClass("running")) {
+				sudoku.timer("stop",0,true);
+			} else {
+				sudoku.timer("start",time,true);
+			}
+		}
+	};
+
+	sudoku.timeadj = function(val) {
+		return (val > 9) ? val : "0" + val;
+	};
+
+	sudoku.pause = function(cmd) {
+		if (cmd === "pause") {
+			$("input").hide();
+			$("#resume").show();
+		} else {
+			$("input").show();
+			$("#resume").hide();
 		}
 	};
 
@@ -372,10 +391,6 @@
 		return haiku[Math.floor(Math.random()*haiku.length)];
 	};
 
-	sudoku.timeadj = function(val) {
-		return (val > 9) ? val : "0" + val;
-	};
-
 	sudoku.empties = function() {
 		var empties = 0;
 		$("#board input").each(function() {
@@ -384,16 +399,6 @@
 			}
 		});
 		return empties;
-	};
-
-	sudoku.pause = function(cmd) {
-		if (cmd === "pause") {
-			$("input").hide();
-			$("#resume").show();
-		} else {
-			$("input").show();
-			$("#resume").hide();
-		}
 	};
 
 	sudoku.newgame = function() {
@@ -405,10 +410,11 @@
 		hopeless = $("<div>").attr("class", "btn").attr("id", "btnhopeless").attr("data-diff", "80").html("HOPELESS");
 		$("#end").hide();
 		$("#new").html("New Game:<br />").append(easy).append("<br />").append(hard).append("<br />").append(hopeless).show();
+		// re-bind timer click
+		$("#timer").on("click", function() {
+			sudoku.timer("toggle");
+		});
 	};
-
-
-////////////////////////////////////////////////////////////
 
 	// prevent unwanted characters, and detect remaining empties at the same time
 	$("#sudoku").on("input", "input", function() {
@@ -467,6 +473,10 @@
 	// dismiss checker dialog
 	$("#outer").on("click", "#btnok", function() {
 		$("#end").hide();
+		// re-bind timer click
+		$("#timer").on("click", function(){
+			sudoku.timer("toggle");
+		});
 	});
 
 	// solve board
@@ -474,17 +484,13 @@
 		sudoku.solve();
 	});
 
-	// pause timer
+	// pause/restart game
 	$("#timer").on("click", function() {
-		if ($(this).hasClass("running")) {
-			sudoku.timer("stop",0,true);
-		} else {
-			sudoku.timer("start",time,true);
-		}
+		sudoku.timer("toggle");
 	});
 
 	$("#resume").on("click", function() {
-		sudoku.timer("start",time,true);
+		sudoku.timer("toggle");
 	});
 
 }(window.sudoku = window.sudoku || {}, jQuery));
