@@ -150,6 +150,10 @@ Portions of the generator and cell traversal contained herein have roots in Mori
 Changelog
 =========
 
+#### 2015-03-30
+- Added two more haiku for _solved_ game state
+- Removed a couple errant spaces, combined a redundant binding
+
 #### 2015-03-29
 - Eliminated precedence of empty cells in _checked_ state (show empty cells AND duplicate notice)
 - Added gameplay documentation

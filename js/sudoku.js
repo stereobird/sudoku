@@ -495,11 +495,7 @@
   });
 
   // pause/restart game
-  $("#timer").on("click", function() {
-    sudoku.timer("toggle");
-  });
-
-  $("#resume").on("click", function() {
+  $("#timer, #resume").on("click", function() {
     sudoku.timer("toggle");
   });
 
