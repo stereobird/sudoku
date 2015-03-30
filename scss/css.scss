@@ -12,36 +12,36 @@ $maxwidth: 500px;
 //////////////////////////////////
 
 body {
-	text-align: center;
-	font: {
-		family: $font;
-		weight: 400;
-		size: 60%;
-	}
-	color: #aaa;
+  text-align: center;
+  font: {
+    family: $font;
+    weight: 400;
+    size: 60%;
+  }
+  color: #aaa;
 }
 
 h1 {
-	font-size: 3em;
-	line-height: .85em;
-	letter-spacing: -.1em;
-	margin: 0;
+  font-size: 3em;
+  line-height: .85em;
+  letter-spacing: -.1em;
+  margin: 0;
 }
 
 input {
-	border: 0;
-	margin: 0;
-	font-size: 2em;
-	width: 95%;
-	height: 95%;
-	color: #999;
-	background: transparent;
-	text-align: center;
-	outline: none;
-	overflow: hidden;
-	font-family: $font;
-	touch-action: none;
-	box-shadow: none;
+  border: 0;
+  margin: 0;
+  font-size: 2em;
+  width: 95%;
+  height: 95%;
+  color: #999;
+  background: transparent;
+  text-align: center;
+  outline: none;
+  overflow: hidden;
+  font-family: $font;
+  touch-action: none;
+  box-shadow: none;
 }
 
 //////////////////////////////////
@@ -49,292 +49,292 @@ input {
 //////////////////////////////////
 
 #outer {
-	height: 96vw;
-	width: 96vw;
-	max-width: $maxwidth;
-	text-align: left;
-	margin: 0 auto;
+  height: 96vw;
+  width: 96vw;
+  max-width: $maxwidth;
+  text-align: left;
+  margin: 0 auto;
 }
 
 #hdr {
-	position: relative;
-	max-width: $maxwidth;
-	padding:0 7px;
-	span {
-		position: absolute;
-		cursor:pointer;
-		font-weight: 800;
-	}
-	#timer {
-		right: 6px;
-		bottom: 0;
-		color: #ddd;
-		font-size: 1.5em;
-	}
+  position: relative;
+  max-width: $maxwidth;
+  padding:0 7px;
+  span {
+    position: absolute;
+    cursor:pointer;
+    font-weight: 800;
+  }
+  #timer {
+    right: 6px;
+    bottom: 0;
+    color: #ddd;
+    font-size: 1.5em;
+  }
 }
 
 #container {
-	position: relative;
-	margin: 0;
+  position: relative;
+  margin: 0;
 }
 
 #sudoku {
-	padding: 8px;
+  padding: 8px;
 }
 
 #board {
-	position: relative;
-	width: 100%;
-	height: 100% !important;
-	min-width: 300px;
-	border: 5px solid #999;
-	tr {
-		td {
-			width: 11.1%;
-			height: 11%;
-			text-align: center;
-			padding: 0;
-			margin: 0;
-			vertical-align: middle;
-			border-collapse: collapse;
-			border-right: 1px solid #ccc;
-			border-bottom: 1px solid #ccc;
-		}
-		td:hover {
-			background:#ffc;
-		}
-		td:nth-child(3), td:nth-child(6) {
-			border-right: 2px solid #aaa;
-		}
-		td:nth-child(9) {
-			border-right: 0;
-		}
-	}
-	tr:nth-child(3) td {
-		border-bottom: 2px solid #aaa;
-	}
-	tr:nth-child(6) td {
-		border-bottom: 2px solid #aaa;
-	}
+  position: relative;
+  width: 100%;
+  height: 100% !important;
+  min-width: 300px;
+  border: 5px solid #999;
+  tr {
+    td {
+    width: 11.1%;
+    height: 11%;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+    border-collapse: collapse;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    }
+    td:hover {
+      background:#ffc;
+    }
+    td:nth-child(3), td:nth-child(6) {
+      border-right: 2px solid #aaa;
+    }
+    td:nth-child(9) {
+      border-right: 0;
+    }
+  }
+  tr:nth-child(3) td {
+    border-bottom: 2px solid #aaa;
+  }
+  tr:nth-child(6) td {
+    border-bottom: 2px solid #aaa;
+  }
 }
 
 .empty {
-	input {
-		color: #000;
-		cursor: pointer;
-	}
+  input {
+    color: #000;
+    cursor: pointer;
+  }
 }
 
 .filled {
-	background: #eee !important;
+  background: #eee !important;
 }
 
 .corrected {
-	background: #fcc;
-	input {
-		color: #a00;
-	}
+  background: #fcc;
+  input {
+    color: #a00;
+  }
 }
 
 .entered {
-	input {
-		color: #ccc;
-	}
+  input {
+    color: #ccc;
+  }
 }
 
 .valid {
-	background: #afa;
-	input {
-		color: #070;
-	}
+  background: #afa;
+  input {
+    color: #070;
+  }
 }
 
 .active {
-	background: #ffd;
+  background: #ffd;
 }
 
 #end {
-	display: none;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin: -166px -120px;
-	background: rgba(0, 0, 0, .5);
-	padding: 1em .5em;
-	color: #fff;
-	font-size: 1.2em;
-	font-weight: 800;
-	width: 220px;
-	text-align: center;
-	border-radius: 4px;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -166px -120px;
+  background: rgba(0, 0, 0, .5);
+  padding: 1em .5em;
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: 800;
+  width: 220px;
+  text-align: center;
+  border-radius: 4px;
 }
 
 #new {
-	display: none;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin: -110px -130px;
-	background: rgba(0, 0, 0, .5);
-	padding: 1em .5em;
-	color: #fff;
-	font-size: 1.2em;
-	font-weight: 800;
-	width: 240px;
-	text-align: center;
-	border-radius: 4px;
-	div {
-		margin: 4px 0;
-		width: 200px;
-	}
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -110px -130px;
+  background: rgba(0, 0, 0, .5);
+  padding: 1em .5em;
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: 800;
+  width: 240px;
+  text-align: center;
+  border-radius: 4px;
+  div {
+    margin: 4px 0;
+    width: 200px;
+  }
 }
 
 #numbers {
-	max-width: $maxwidth;
-	margin: 0;
-	padding: 0;
-	text-align: center;
-	clear: both;
-	&:before, &:after {
-		content: "";
-		content: none;
-	}
-	span {
-		display: inline-block;
-		border-radius: 10px;
-		background: #09c;
-		color: #fff;
-		padding: 2px 6px;
-		font-size: 1.4em;
-		cursor: pointer;
-		margin: 0 .01em;
-		font-weight: 800;
-		&:hover {
-			background: #069;
-		}
-		&:last-child {
-			background: #aaa;
-		}
-		&:last-child:hover {
-			background: #888;
-		}
-	}
+  max-width: $maxwidth;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  clear: both;
+  &:before, &:after {
+    content: "";
+    content: none;
+  }
+  span {
+    display: inline-block;
+    border-radius: 10px;
+    background: #09c;
+    color: #fff;
+    padding: 2px 6px;
+    font-size: 1.4em;
+    cursor: pointer;
+    margin: 0 .01em;
+    font-weight: 800;
+    &:hover {
+      background: #069;
+    }
+    &:last-child {
+      background: #aaa;
+    }
+    &:last-child:hover {
+      background: #888;
+    }
+  }
 }
 
 #haiku {
-	display: none;
-	max-width: $maxwidth;
-	clear: both;
-	div {
-		padding: 10px 20px;
-		text-align: center;
-		font-size: 1.4em;
-		font-style: italic;
-	}
+  display: none;
+  max-width: $maxwidth;
+  clear: both;
+  div {
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 1.4em;
+    font-style: italic;
+  }
 }
 
 #resume {
-	display: none;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin: -30px -100px;
-	width: 200px;
-	text-align: center;
-	background: #4a0;
-	padding: 10px;
-	color: #fff;
-	font-weight: 800;
-	cursor: pointer;
-	font-size: 3em;
-	&:hover {
-		background: #6d0;
-	}
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -30px -100px;
+  width: 200px;
+  text-align: center;
+  background: #4a0;
+  padding: 10px;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  font-size: 3em;
+  &:hover {
+    background: #6d0;
+  }
 }
 
 #btns {
-	max-width: $maxwidth;
-	padding: 9px 6px;
-	overflow: hidden;
-	div.col3 {
-		width: 33.3%;
-		min-width: 65px;
-		float: left;
-		div {
-			margin: 0 2px;
-			padding: 10px;
-			text-align: center;
-			background: #09c;
-			color: #fff;
-			font-size: 1.4em;
-			letter-spacing: -.05em;
-			font-weight: 800;
-			cursor: pointer;
-			white-space: nowrap;
-			&:hover {
-				background: #0b7 !important;
-			}
-		}
-	}
-	#btnnew {
-		background: #c90;
-	}
-	#btnsolve {
-		background: #c00;
-	}
+  max-width: $maxwidth;
+  padding: 9px 6px;
+  overflow: hidden;
+  div.col3 {
+    width: 33.3%;
+    min-width: 65px;
+    float: left;
+    div {
+      margin: 0 2px;
+      padding: 10px;
+      text-align: center;
+      background: #09c;
+      color: #fff;
+      font-size: 1.4em;
+      letter-spacing: -.05em;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      &:hover {
+        background: #0b7 !important;
+      }
+    }
+  }
+  #btnnew {
+    background: #c90;
+  }
+  #btnsolve {
+    background: #c00;
+  }
 }
 
 #btnreplay, #btnok, #btneasy, #btnhard, #btnhopeless {
-	display: inline-block;
-	padding: 10px;
-	text-align: center;
-	background: #4a0;
-	color: #fff;
-	font-size: 1.4em;
-	letter-spacing: -.05em;
-	font-weight: 800;
-	cursor: pointer;
-	white-space: nowrap;
-	&:hover {
-		background: #0be !important;
-	}
+  display: inline-block;
+  padding: 10px;
+  text-align: center;
+  background: #4a0;
+  color: #fff;
+  font-size: 1.4em;
+  letter-spacing: -.05em;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  &:hover {
+    background: #0be !important;
+  }
 }
 
 #btnok {
-	background: #09c;
+  background: #09c;
 }
 
 #btneasy {
-	background: #fc0;
+  background: #fc0;
 }
 
 #btnhard {
-	background: #ca0;
+  background: #ca0;
 }
 
 #btnhopeless {
-	background: #a70;
+  background: #a70;
 }
 
 #btncancel {
-	display: inline-block;
-	position: absolute;
-	background: #c00;
-	color: #fff;
-	border-radius: 10px;
-	width: auto !important;
-	top: -6px;
-	right: -4px;
-	padding:4px 5px 4px 6px;
-	cursor: pointer;
-	font-size: .7em;
-	&:hover {
-		background: #a00;
-	}
+  display: inline-block;
+  position: absolute;
+  background: #c00;
+  color: #fff;
+  border-radius: 10px;
+  width: auto !important;
+  top: -6px;
+  right: -4px;
+  padding:4px 5px 4px 6px;
+  cursor: pointer;
+  font-size: .7em;
+  &:hover {
+    background: #a00;
+  }
 }
 
 .btn {
-	border-radius: 2px;
+  border-radius: 2px;
 }
 
 //////////////////////////////////
@@ -342,45 +342,45 @@ input {
 //////////////////////////////////
 
 @media #{$smallscreen} {
-	body {
-		font-size: 80%;
-	}
-	#numbers, #haiku {
-		font-size: 1em;
-	}
-	#btns {
-		font-size: 1em;
-	}
+  body {
+    font-size: 80%;
+  }
+  #numbers, #haiku {
+    font-size: 1em;
+  }
+  #btns {
+    font-size: 1em;
+  }
 }
 
 @media #{$medscreen} {
-	body {
-		font-size:100%;
-	}
-	#outer {
-		height: 400px;
-		width: 400px;
-	}
-	#numbers, #haiku {
-		font-size: 1em;
-	}
-	#btns {
-		font-size: .84em;
-	}
+  body {
+    font-size:100%;
+  }
+  #outer {
+    height: 400px;
+    width: 400px;
+  }
+  #numbers, #haiku {
+    font-size: 1em;
+  }
+  #btns {
+    font-size: .84em;
+  }
 }
 
 @media #{$bigscreen} {
-	body {
-		font-size: 120%;
-	}
-	#outer {
-		height: 500px;
-		width: 500px;
-	}
-	#numbers {
-		font-size: 1.1em;
-	}
-	#haiku {
-		font-size: .7em;
-	}
+  body {
+    font-size: 120%;
+  }
+  #outer {
+    height: 500px;
+    width: 500px;
+  }
+  #numbers {
+    font-size: 1.1em;
+  }
+  #haiku {
+    font-size: .7em;
+  }
 }

@@ -28,7 +28,7 @@ Files
 Dependencies
 ============
 
-##### Runtime #####
+##### Runtime
 jQuery is loaded in the `<head>` of `index.html`:
 
 ```html
@@ -37,7 +37,7 @@ jQuery is loaded in the `<head>` of `index.html`:
 
 If you want to run this game locally, save a local copy of jQuery and point to it, instead.
 
-##### Build/Edit #####
+##### Build/Edit
 Sass is highly recommended for the CSS portion, but not absolutely required.
 
 Configuration
@@ -57,7 +57,7 @@ var uimap = {},
 
 All of these things need to exist at this level in the scope so that various functions can access them. Empty declarations are `uimap`, `map`, `key`, `time` and `timer`. The first three are used for the grid of numbers in a current board. `time` and `timer` need to be accessed to pause/start the game timer appropriately.
 
-##### Game Difficulty #####
+##### Game Difficulty
 ```js
 difficulty = 45,
 ```
@@ -71,7 +71,7 @@ hopeless = $("<div>").attr("class", "btn").attr("id", "btnhopeless").attr("data-
 ```
 If you want to change the difficulty levels for the easy/hard/hopeless buttons, changes can be made in `sudoku.newgame`. Default difficulty levels are easy: 25, hard: 50, hopeless: 80. You can also remove or add buttons here.
 
-##### Mobile Consideration #####
+##### Mobile Consideration
 ```js
 small = window.matchMedia("only screen and (max-width: 760px)");
 ```
@@ -88,7 +88,7 @@ if (small.matches) {
 
 You may want to use a different behavior, such as changing the input `type` to "number" and adding `min` and `max` attributes for mobile devices.
 
-##### Immediate Start #####
+##### Immediate Start
 If you want to prevent a game from automatically starting on initial page load (the default behavior), you can remove the last two lines from the `sudoku.init` function.
 
 ```js
@@ -149,6 +149,20 @@ Portions of the generator and cell traversal contained herein have roots in Mori
 
 Changelog
 =========
+
+#### 2015-03-29
+- Eliminated precedence of empty cells in _checked_ state (show empty cells AND duplicate notice)
+- Added gameplay documentation
+- Reformatted js and scss (farewell, tabs)
+
+#### 2015-03-28
+- Fixed timer being restartable in _solved_ game state
+- Show haiku only in _solved_ game state, not during _checked_ state
+- Added cancel button to new game dialog, when game is in active state
+
+#### 2015-03-27
+- v1.0
+- Cleaned up code, added documentation
 
 #### 2015-03-26
 - Added a timer that shows mins:secs. You can pause it and the game will hide the numbers from you until you un-pause.
