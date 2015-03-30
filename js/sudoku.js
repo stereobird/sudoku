@@ -200,7 +200,7 @@
 	// manually validate (don't use key) *just in case* there's more than one valid solution to the board
 	sudoku.check = function() {
 		var errors = [],
-			stats,
+			stats = "",
 			empties,
 			okbtn = '<div id="btnok" class="btn">OK</div>',
 			i;
@@ -214,13 +214,16 @@
 			errors.push(sudoku.validate("reg", i));
 		}
 		// errors are all in one array (row,col,reg; repeat)
-		if (errors.indexOf(2) !== -1) {
-			// empties exist
-			empties = sudoku.empties();
-			stats = (empties > 1) ? "Oh dear! There are still " + empties + " empty cells remaining!<br /><br />" : "Oh no! One more empty cell left!<br /><br />";
-		} else if (errors.indexOf(1) !== -1) {
-				// no empties, but duplicates exist
-				stats = "Uh oh! All rows, columns and regions must contain each digit from 1-9 only ONCE.<br /><br />";
+		if (errors.indexOf(2) !== -1 || errors.indexOf(1) !== -1) {
+			if (errors.indexOf(2) !== -1) {
+				// empties exist
+				empties = sudoku.empties();
+				stats = (empties > 1) ? "Oh dear! There are still " + empties + " empty cells remaining!<br /><br />" : "Oh no! One more empty cell left!<br /><br />";
+			}
+			if (errors.indexOf(1) !== -1) {
+				// duplicates exist
+				stats += "Uh oh! All rows, columns and regions must contain each digit from 1-9 only ONCE.<br /><br />";
+			}
 		} else {
 			// everything looks good
 			sudoku.timer("stop",0);

@@ -29,20 +29,20 @@ h1 {
 }
 
 input {
-		border: 0;
-		margin: 0;
-		font-size: 2em;
-		width: 95%;
-		height: 95%;
-		color: #999;
-		background: transparent;
-		text-align: center;
-		outline: none;
-		overflow: hidden;
-		font-family: $font;
-		touch-action: none;
-		box-shadow: none;
-	}
+	border: 0;
+	margin: 0;
+	font-size: 2em;
+	width: 95%;
+	height: 95%;
+	color: #999;
+	background: transparent;
+	text-align: center;
+	outline: none;
+	overflow: hidden;
+	font-family: $font;
+	touch-action: none;
+	box-shadow: none;
+}
 
 //////////////////////////////////
 // specifics
@@ -86,7 +86,6 @@ input {
 	position: relative;
 	width: 100%;
 	height: 100% !important;
-	//max-height: $maxwidth;
 	min-width: 300px;
 	border: 5px solid #999;
 	tr {
@@ -159,7 +158,7 @@ input {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	margin: -96px -120px;
+	margin: -166px -120px;
 	background: rgba(0, 0, 0, .5);
 	padding: 1em .5em;
 	color: #fff;

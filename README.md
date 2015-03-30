@@ -43,7 +43,7 @@ Sass is highly recommended for the CSS portion, but not absolutely required.
 Configuration
 =============
 
-In `sudoku.js`, there are a couple of configurable items in addition to some initial variable declaration:
+In `sudoku.js`, there are a couple of configurable items in addition to some initial variable declarations:
 
 ```js
 var uimap = {},
@@ -55,8 +55,9 @@ var uimap = {},
     small = window.matchMedia("only screen and (max-width: 760px)");
 ```
 
-All of these things need to exist here in the scope so that various functions can access them. Empty declarations are `uimap`, `map`, `key`, `time` and `timer`. The first three are used for the grid of numbers in a current board. `time` and `timer` need to be accessed to pause/start the game timer appropriately.
+All of these things need to exist at this level in the scope so that various functions can access them. Empty declarations are `uimap`, `map`, `key`, `time` and `timer`. The first three are used for the grid of numbers in a current board. `time` and `timer` need to be accessed to pause/start the game timer appropriately.
 
+##### Game Difficulty #####
 ```js
 difficulty = 45,
 ```
@@ -70,6 +71,7 @@ hopeless = $("<div>").attr("class", "btn").attr("id", "btnhopeless").attr("data-
 ```
 If you want to change the difficulty levels for the easy/hard/hopeless buttons, changes can be made in `sudoku.newgame`. Default difficulty levels are easy: 25, hard: 50, hopeless: 80. You can also remove or add buttons here.
 
+##### Mobile Consideration #####
 ```js
 small = window.matchMedia("only screen and (max-width: 760px)");
 ```
@@ -85,6 +87,58 @@ if (small.matches) {
 ```
 
 You may want to use a different behavior, such as changing the input `type` to "number" and adding `min` and `max` attributes for mobile devices.
+
+##### Immediate Start #####
+If you want to prevent a game from automatically starting on initial page load (the default behavior), you can remove the last two lines from the `sudoku.init` function.
+
+```js
+sudoku.init = function() {
+    $("#sudoku").html(sudoku.makeboard());
+    sudoku.clearmap();
+    sudoku.buildgame(0,0);
+    sudoku.timer("start",0);
+};
+```
+
+`$("#sudoku").html(sudoku.makeboard());` creates an empty board, this is required.
+
+`sudoku.clearmap()` prepares the `map` object structure (and clears out an existing, populated one when necessary), this is also required.
+
+`sudoku.buildgame(0,0)` creates a playable set of numbers. This can safely be removed.
+
+`sudoku.timer("start",0)` starts the game timer (at zero). This can safely be removed.
+
+If `sudoku.buildgame(0,0)` and `sudoku.timer("start",0)` are removed, and you want to show the "new game" dialog on page load, just add `sudoku.newgame();` to `sudoku.init`.
+
+Gameplay
+========
+
+When `index.html` is loaded, a new game begins immediately. The timer starts counting from 00:00, and the game is in an _active_ state.
+
+A user can enter numbers in empty or editable cells by:
+- clicking an empty/editable cell and then clicking a number button
+- clicking an empty/editable cell and then typing a number (non-mobile only)
+- tabbing into an empty/editable cell and then clicking a number button (non-mobile only)
+- tabbing into an empty/editable cell and then typing a number (non-mobile only)
+
+Cell inputs are restircted to numbers 1-9 only, users are not able to enter any other character or digit. An active editable cell can be emptied by clicking the "X" button in the number button bar, or using delete/backspace keys appropriately (non-mobile only).
+
+At any point during an _active_ or _paused_ game, a user can select the "new game" button to bring up the "new game" dialog.
+
+A user can give up at any time during an _active_ or _paused_ game by clicking the "give up" button. The game will enter an _ended_ state and game statistics will be shown to the user for that game:
+- number of cells the user had correct
+- number of cells the user left empty
+- number of cells the user had incorrect
+
+A user can check their game progress by clicking the "check" button at any time in an active game. If any cells are empty, the user will be notified how many empty cells are remaining. If any rows, columns or regions contain duplicate numbers, the user will be notified that duplicates exist _somewhere_ on the board. It is the user's responsibility to figure out _where_.
+
+When the last empty cell is filled in by the user, the check process runs automatically, and the user will be notified if any duplicates exist on the board. If the board is valid, the timer will be stopped and the user will be notified of a successful solve (an _ended_ state).
+
+A user can pause an active game at any time by clicking the game timer. The time will stop and the game will enter a _paused_ state -- all numbers are hidden from view in a _paused_ state to discourage cheating, in case someone would actually cheat at Sudoku. The game and timer will resume when the user clicks the giant "play" button that covers the board while in a _paused_ state.
+
+Each editable cell on the board is changed to show where the statistics apply in this specific _ended_ state. Correct cells are shown in green, empty cells are filled in with a light gray color number, and incorrect cells are shown in red (but with the incorrect number corrected).
+
+In any _ended_ state, a "play again" button is shown. Clicking this button brings up the "new game" dialog, where a user can select a difficulty level for the new game. The _ended_ state also displays a random haiku about Sudoku, for no good reason.
 
 Attribution
 ===========
