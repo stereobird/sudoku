@@ -69,9 +69,9 @@
       stepy,
       i;
     for (i = (y + 9*x); i < 81; i++) {
-      stepx = Math.floor( i / 9 );
+      stepx = Math.floor(i / 9);
       stepy = i % 9;
-      if (map.row[stepx][stepy] === '' ) {
+      if (map.row[stepx][stepy] === '') {
         return uimap[stepx][stepy];
       }
     }
