@@ -389,7 +389,9 @@
       "looks perfect to me<br />but two fives are in this row<br />where did i go wrong",
       "click the timer, friend<br />your active game will be paused<br />maybe take a nap",
       "logic, all you need<br />or maybe just lots of time<br />and tons of patience",
-      "train will be here soon<br />time for one quick Sudoku<br />missed the train again"
+      "train will be here soon<br />time for one quick Sudoku<br />missed the train again",
+      "oh, ticking timer<br />watching a whispered nonet<br />are you mocking me",
+      "these open spaces<br />an empty canvas for me<br />to paint by number"
       ];
     return haiku[Math.floor(Math.random()*haiku.length)];
   };
