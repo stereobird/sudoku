@@ -3,6 +3,8 @@ Sudoku
 
 A basic, utilitarian Sudoku game that uses jQuery.
 
+[Play it!](http://stereobird.github.io/sudoku/)
+
 [Sudoku](http://en.wikipedia.org/wiki/Sudoku) is a single-player, logic-based puzzle game. The object is to fill in a 9x9 grid of squares with numbers from 1 to 9, so that no number repeats within each row, column and 3x3 region. The word Sudoku is short for _Su-ji wa dokushin ni kagiru_ which means "the numbers must be single".
 
 - Uses [backtracking](http://en.wikipedia.org/wiki/Sudoku_solving_algorithms) to generate a solved puzzle
